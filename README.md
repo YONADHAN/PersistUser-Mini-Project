@@ -1,73 +1,135 @@
-# React + TypeScript + Vite
+# PersistUsers
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PersistUsers is a React + TypeScript application that demonstrates efficient client-side data persistence using IndexedDB (Dexie.js). The app fetches user data from an external API and maintains state locally without unnecessary API calls.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Overview
 
-## React Compiler
+PersistUsers showcases how to:
+- Fetch and store API data locally
+- Maintain application state across browser refreshes
+- Perform CRUD operations without backend dependency
+- Build responsive UI using Material UI
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧠 Project Specification
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This project is built to simulate real-world frontend behavior where:
+- API calls are minimized
+- Data is cached locally
+- UI stays consistent even after reload
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## ⚙️ Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Frontend:** React (Vite) + TypeScript  
+- **UI Library:** Material UI  
+- **State Management:** React Hooks  
+- **Storage:** IndexedDB (Dexie.js)  
+- **API:** https://randomuser.me  
+
+---
+
+## ✨ Features
+
+- 🔄 Fetch 50 users from API
+- 💾 Store users in IndexedDB (Dexie)
+- 🔁 Persistent state after browser refresh
+- ❌ Delete users without API calls
+- 🔃 Refresh button to re-fetch users
+- ⏳ Loading spinner while fetching data
+- 📊 Dynamic count of users
+
+---
+
+## 📦 Project Structure
+```
+.
+├── app
+│   ├── App.css
+│   └── App.tsx
+├── features
+│   └── users
+│       ├── components
+│       │   ├── MaterialUIComponents
+│       │   │   ├── LoadingSpinner.tsx
+│       │   │   └── MultiActionAreaCard.tsx
+│       │   ├── UserCard.tsx
+│       │   └── UserList.tsx
+│       ├── hooks
+│       │   └── useUsers.ts
+│       ├── index.ts
+│       ├── repository
+│       │   └── user.repository.ts
+│       ├── services
+│       │   └── user.service.ts
+│       └── types
+│           └── user.types.ts
+├── index.css
+├── main.tsx
+└── shared
+    ├── api
+    │   └── axios.ts
+    ├── components
+    │   ├── Header.tsx
+    │   └── Loader.tsx
+    ├── db
+    │   └── dexie.ts
+    ├── styles
+    │   └── theme.ts
+    └── utils
+        └── formatUser.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🔄 Application Flow
+
+1. On initial load:
+   - Check IndexedDB
+   - If data exists → load from DB
+   - Else → fetch from API
+
+2. Delete user:
+   - Remove from IndexedDB
+   - Update UI instantly
+
+3. Browser refresh:
+   - Load from IndexedDB (no API call)
+
+4. Refresh button:
+   - Clear DB
+   - Fetch fresh 50 users
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/persist-users.git
+cd persist-users
+
+
 ```
+---
+### 2.Install Dependencies
+
+npm install
+
+### 3.Run Development Server
+
+npm run dev
+---
+
+### 🧪 Key Learning Outcomes
+IndexedDB usage with Dexie.js
+Managing persistent frontend state
+Optimizing API usage
+Clean architecture in React apps
+---

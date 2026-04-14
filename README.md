@@ -123,8 +123,8 @@ cd persist-users
 npm install
 
 ### 3.Run Development Server
-
 npm run dev
+
 ---
 
 ### 🧪 Key Learning Outcomes

@@ -128,8 +128,10 @@ npm run dev
 ---
 
 ### 🧪 Key Learning Outcomes
+
 IndexedDB usage with Dexie.js
 Managing persistent frontend state
 Optimizing API usage
 Clean architecture in React apps
+
 ---
